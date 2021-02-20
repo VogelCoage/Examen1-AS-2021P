@@ -14,4 +14,5 @@ public interface IGestor {
 	public void setCatalogo(Map<String, InfoUIA> p);
 	public IGestor getGestor();
 	public void setGestor(IGestor p);
+	public void Registra();
 }

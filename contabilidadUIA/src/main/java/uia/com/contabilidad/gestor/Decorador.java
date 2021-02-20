@@ -161,4 +161,8 @@ private void carga(String tipo, List<InfoUIA> subCatalogo, String nombre)
 		
 	}
 	
+	public void Registra() {
+		
+	}
+	
 }

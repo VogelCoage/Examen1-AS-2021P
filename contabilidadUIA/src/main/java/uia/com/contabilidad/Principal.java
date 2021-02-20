@@ -12,21 +12,25 @@ import uia.com.contabilidad.gestor.Gestor;
 import uia.com.contabilidad.proveedores.Proveedor;
 
 public class Principal {
-	public static void main(String[] args) {				
+	public static void main(String[] args) {
+		//Se imprime mensaje inicial
 		System.out.println("Hola UIA");
+		//Se declaran variables de cada clase
 		Proveedor proveedor=null;
 		Compra compra=null;
 		Cuenta cuenta=null;
 		Requisicion requisicion=null;
 		//Factura factura=null;
 		Cheque cheque=null;
-
-		Gestor contabilidad = new Gestor("/Users/vogel/Desktop/Examen1-AS-master/contabilidadUIA/ListaProveedores.json");		
+		//Se crea la instancia de Gestor envíando como parámetro la ruta al archivo .json
+		Gestor contabilidad = new Gestor("/Users/vogel/Desktop/Examen1-AS-master/contabilidadUIA/ListaProveedores.json");
+		
 		 DecoradorProveedores gestorProveedores = new DecoradorProveedores(contabilidad, "proveedor");
 		 DecoradorCompras gestorCompras = new DecoradorCompras(gestorProveedores, "Compra");
 		 DecoradorCompras gestorCuentas = new DecoradorCompras(gestorCompras, "Cuenta");
 		 DecoradorRequisicion gestorRequisicion = new DecoradorRequisicion(gestorCuentas, "Requisicion");		 
 		 DecoradorCheques gestorCheques = new DecoradorCheques(gestorRequisicion, "Cheque");
+		 
 		 
 		 gestorProveedores.Print();
 		 gestorCompras.Print();
@@ -48,6 +52,10 @@ public class Principal {
 		 
 		requisicion.valida();
 		requisicion.Print();
+		
+		if(requisicion.getEstado() == "Valido") {
+			gestorCheques.registraCheque(cheque);
+		}
 		 
 		 
 		

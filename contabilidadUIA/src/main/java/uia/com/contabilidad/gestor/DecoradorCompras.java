@@ -15,6 +15,10 @@ public class DecoradorCompras extends Decorador {
 	{
 		super.Print();
 	}
+	
+	public void registraCompras() {
+		super.Print();
+	}
 
 
 }

@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
-
+//estas importaciones son para tratar con los archivos .json
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -16,15 +16,17 @@ import uia.com.contabilidad.clientes.ListaInfoUIA;
 
 public abstract class AGestor implements IGestor{
 	
+	//Se crea una instancia de tipo map que será el catálogo maestro
 	protected Map<String, InfoUIA> catalogoMaestro = null;
 	
+	//Constructor que recibe a través de la clase hijo y como parámetro, la ruta del archivo .json
     public AGestor(String nomFile)
     {
     	ObjectMapper mapper = new ObjectMapper();
         
         ListaInfoUIA miLista = null;
         
-		try {
+        try {
             mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
    		 	miLista = mapper.readValue(new FileInputStream(nomFile), ListaInfoUIA.class );
             
@@ -41,7 +43,8 @@ public abstract class AGestor implements IGestor{
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-
+        /*Se comprueba que la lista tenga datos (se está envíando el archivo de proveedores) y de
+         * ser así se imprime la clase, id y nombre*/
         if (miLista != null) {
             System.out.println("----- Items List -----");
 
@@ -49,7 +52,7 @@ public abstract class AGestor implements IGestor{
                 System.out.println("Type = " + mi.getClass() +  ", id = "+ mi.getId() + ", name = " + mi.getName());
             }
         }
-        
+        //Se inicializa el catálogo maestro
         catalogoMaestro = new HashMap<String, InfoUIA>();
         
          catalogoMaestro = miLista.getItems().stream()

@@ -16,6 +16,10 @@ public class DecoradorCuentas extends Decorador {
 	{
 		super.Print();
 	}
+	
+	public void registraCuentas() {
+		super.Print();
+	}
 
 
 }

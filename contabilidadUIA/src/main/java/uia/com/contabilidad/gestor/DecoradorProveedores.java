@@ -16,5 +16,9 @@ public class DecoradorProveedores extends Decorador {
 	{
 		super.Print();
 	}
+	
+	public void registraProveedores() {
+		super.Print();
+	}
 
 }
